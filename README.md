@@ -28,7 +28,7 @@ app | 使用示例
 
 * as 2.3.3
 * ndk 14r
-* opencv 
+* opencv 2.4.11
 
 感谢和参照：
 
