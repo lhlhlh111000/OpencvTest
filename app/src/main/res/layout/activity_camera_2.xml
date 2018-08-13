@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.0">
+
+        <com.google.android.cameraview.CameraView
+            android:id="@+id/camera2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.google.android.cameraview.CameraView>
+
+        <com.pig.android.opencv.ImageCropAreaView
+            android:id="@+id/crop_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_do_crop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.0"
+        android:text="拍照"/>
+
+</LinearLayout>
