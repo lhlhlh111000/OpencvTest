@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.pig.android.opencv.OpencvTestBridge;
 
 import java.io.File;
 import java.io.IOException;
@@ -139,10 +140,10 @@ public class CropActivity extends AppCompatActivity {
         options.inJustDecodeBounds=false;
         Bitmap bitmap=BitmapFactory.decodeFile(photoPath,options);
         Bitmap cropBmp = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-//        OpencvTestBridge.imageToCrop(bitmap, cropBmp);
-//        ivSrc.setImageBitmap(bitmap);
-//        if(null != cropBmp) {
-//            ivShow.setImageBitmap(cropBmp);
-//        }
+        OpencvTestBridge.imageToCrop(bitmap, cropBmp);
+        ivSrc.setImageBitmap(bitmap);
+        if(null != cropBmp) {
+            ivShow.setImageBitmap(cropBmp);
+        }
     }
 }

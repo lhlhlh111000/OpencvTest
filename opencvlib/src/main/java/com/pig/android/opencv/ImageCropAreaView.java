@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PixelFormat;
@@ -206,10 +207,10 @@ public class ImageCropAreaView extends SurfaceView implements SurfaceHolder.Call
             return null;
         }
         mPath.reset();
-        Point lt = points[0];
-        Point rt = points[1];
-        Point rb = points[2];
-        Point lb = points[3];
+        Point lt = scalePoint(points[0], obtainCentrePoint(points));
+        Point rt = scalePoint(points[1], obtainCentrePoint(points));
+        Point rb = scalePoint(points[2], obtainCentrePoint(points));
+        Point lb = scalePoint(points[3], obtainCentrePoint(points));
         mPath.moveTo(getPreviewX(lt.x), getPreviewY(lt.y));
         mPath.lineTo(getPreviewX(rt.x), getPreviewY(rt.y));
         mPath.lineTo(getPreviewX(rb.x), getPreviewY(rb.y));
@@ -232,5 +233,37 @@ public class ImageCropAreaView extends SurfaceView implements SurfaceHolder.Call
 
     public static double getPointsDistance(float x1, float y1, float x2, float y2) {
         return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+    }
+
+    private Point obtainCentrePoint(Point[] points) {
+        int x1 = points[0].x;
+        int y1 = points[0].y;
+
+        int x2 = points[1].x;
+        int y2 = points[1].y;
+
+        int x3 = points[2].x;
+        int y3 = points[2].y;
+
+        int x4 = points[3].x;
+        int y4 = points[3].y;
+
+        int centreX = ((x3-x1)*(x4-x2)*(y2-y1)+x1*(y3-y1)*(x4-x2)-x2*(y4-y2)*(x3-x1))/((y3-y1)*(x4-x2)-(y4-y2)*(x3-x1));
+        int centreY = (y3-y1)*((x4-x2)*(y2-y1)+(x1-x2)*(y4-y2))/((y3-y1)*(x4-x2)-(y4-y2)*(x3-x1))+y1;
+        return new Point(centreX, centreY);
+    }
+
+    private Point scalePoint(Point targetPoint, Point centrePoint) {
+        Matrix matrix = new Matrix();
+        // 将Matrix移动到指定位置，
+        // 然后再以点为中心进行缩放
+        matrix.preTranslate(targetPoint.x,targetPoint.y);
+        float scale = 1.1f;
+        matrix.postScale(scale, scale, centrePoint.x, centrePoint.y);
+        float[] values = new float[9];
+        matrix.getValues(values);
+        targetPoint.x = (int) values[Matrix.MTRANS_X];
+        targetPoint.y = (int) values[Matrix.MTRANS_Y];
+        return targetPoint;
     }
 }

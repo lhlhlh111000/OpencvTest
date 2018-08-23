@@ -29,11 +29,16 @@
         android:text="crop"/>
 
     <Button
+        android:id="@+id/btn_scale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="缩放"/>
+
+    <Button
         android:id="@+id/btn_switch_to_camera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:text="camera"/>
+        android:text="过程"/>
 
     <Button
         android:id="@+id/btn_switch_to_camera_2"
