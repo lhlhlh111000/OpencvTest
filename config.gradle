@@ -1,0 +1,21 @@
+ext {
+    android = [
+            compileSdkVersion: 28,
+            buildToolsVersion: "28.0.3",
+            minSdkVersion    : 18,
+            targetSdkVersion : 28
+    ]
+    versions = [
+            "support-version"  : "28.0.0",
+            "junit-version"    : "4.12",
+            "multidex-version" : '1.0.3',
+    ]
+    deps = [
+            "appcompat-v7"            : "com.android.support:appcompat-v7:${versions["support-version"]}",
+            "support-annotations"     : "com.android.support:support-annotations:${versions["support-version"]}",
+            "junit"                   : "junit:junit:${versions["junit-version"]}",
+            "espresso"                : "com.android.support.test.espresso:espresso-core:3.0.2",
+            "constraint-layout"       : "com.android.support.constraint:constraint-layout:1.1.3",
+            "runner"                  : "com.android.support.test:runner:1.0.2",
+    ]
+}
