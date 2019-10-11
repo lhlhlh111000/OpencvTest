@@ -1,6 +1,5 @@
 package com.example.cqt.opencvtest;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -17,10 +16,7 @@ public class ResultShowActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result_show);
 
-        ImageView ivShow = (ImageView) findViewById(R.id.iv_result_show);
-
-
-        Intent intent = getIntent();
+        ImageView ivShow = findViewById(R.id.iv_result_show);
         if(null != Camera2Activity.sResult) {
             ivShow.setImageBitmap(Camera2Activity.sResult);
         }

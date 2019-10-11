@@ -28,8 +28,8 @@ public class Camera2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_2);
 
-        cameraView = (CameraView) findViewById(R.id.camera2);
-        areaView = (ImageCropAreaView) findViewById(R.id.crop_view);
+        cameraView = findViewById(R.id.camera2);
+        areaView = findViewById(R.id.crop_view);
 
         cameraView.addCallback(new CameraView.Callback() {
             @Override

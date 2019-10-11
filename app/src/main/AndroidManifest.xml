@@ -27,7 +27,6 @@
         </activity>
 
         <activity android:name=".CropActivity"/>
-        <activity android:name=".CameraActivity"/>
         <activity android:name=".Camera2Activity"/>
         <activity android:name=".ResultShowActivity"/>
         <activity android:name=".ScaleActivity"/>

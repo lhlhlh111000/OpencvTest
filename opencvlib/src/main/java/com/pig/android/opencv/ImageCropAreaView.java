@@ -144,9 +144,9 @@ public class ImageCropAreaView extends SurfaceView implements SurfaceHolder.Call
      * 裁剪
      */
     public Bitmap doCrop() {
-        Bitmap result = null;
+        Bitmap result;
         if(null == mData) {
-            return result;
+            return null;
         }
 
         if(checkPointArea(mPoints)) { // 裁剪识别区域
