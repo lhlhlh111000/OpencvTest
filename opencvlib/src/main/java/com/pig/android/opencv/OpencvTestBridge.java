@@ -12,10 +12,6 @@ public class OpencvTestBridge {
         System.loadLibrary("opencv_test");
     }
 
-    public static native String obtainNativeText();
-
-    public static native void imageToGray(Bitmap srcBmp, Bitmap outBmp);
-
     public static native void imageToCrop(Bitmap srcBmp, Bitmap outBmp);
 
     public static native void convertBytesToBmp(byte[] bytes, int width, int height, Bitmap outBmp);

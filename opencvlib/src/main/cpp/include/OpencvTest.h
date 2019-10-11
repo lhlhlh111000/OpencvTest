@@ -1,8 +1,0 @@
-//
-// Created by Cutie on 2018/7/18.
-//
-
-#ifndef OPENCVTEST_OPENCVTEST_H
-#define OPENCVTEST_OPENCVTEST_H
-
-#endif //OPENCVTEST_OPENCVTEST_H

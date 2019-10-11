@@ -5,8 +5,7 @@
 #include <jni.h>
 #include <string>
 #include <BitmapUtil.h>
-#include <ImageToGray.h>
-#include <ImageCrop.h>
+#include <process_helper.h>
 
 static const char* JavaBridgeClass = "com/pig/android/opencv/OpencvTestBridge";
 
@@ -24,22 +23,10 @@ static void initClassInfo(JNIEnv *env) {
     gPointInfo.jFieldIDY = env -> GetFieldID(gPointInfo.jClassPoint, "y", "I");
 }
 
-static jstring obtainNativeText(JNIEnv *env) {
-    return env -> NewStringUTF("追不上我吧，被我打败了吧～");
-}
-
-static void imageToGray(JNIEnv *env, jclass type, jobject srcBmp, jobject outBmp) {
-    Mat srcBmpMat;
-    bmpToMat(env, srcBmp, srcBmpMat);
-    MyGrayProcess::ImageToGray gray(srcBmpMat);
-    Mat outBmpMat = gray.processToGray();
-    matToBmp(env, outBmpMat, outBmp);
-}
-
 static void imageToCrop(JNIEnv *env, jclass type, jobject srcBmp, jobject outBmp) {
     Mat srcBmpMat;
     bmpToMat(env, srcBmp, srcBmpMat);
-    MyImageCrop::ImageCrop crop(srcBmpMat);
+    MyImageCrop::process_helper crop(srcBmpMat);
     Mat cropBmpMat = crop.doCrop();
     matToBmp(env, cropBmpMat, outBmp);
 }
@@ -64,7 +51,7 @@ static void findCropArea(JNIEnv *env, jclass type, jbyteArray data,
     bytesToMat(env, data, width, height, srcMat); //预览帧做旋转90度操作
     transpose(srcMat, srcMat);
     flip(srcMat, srcMat, 1);
-    MyImageCrop::ImageCrop crop(srcMat);
+    MyImageCrop::process_helper crop(srcMat);
     vector<Point> scanPoints = crop.findCropArea();
     if(scanPoints.size() == 4) {
         for (int i = 0; i < 4; ++i) {
@@ -129,16 +116,6 @@ static void doCrop(JNIEnv *env, jclass type, jbyteArray data,
 }
 
 static JNINativeMethod gMethods[] = {
-        {
-                "obtainNativeText",
-                "()Ljava/lang/String;",
-                (void*)obtainNativeText
-        },
-        {
-                "imageToGray",
-                "(Landroid/graphics/Bitmap;Landroid/graphics/Bitmap;)V",
-                (void*)imageToGray
-        },
         {
                 "imageToCrop",
                 "(Landroid/graphics/Bitmap;Landroid/graphics/Bitmap;)V",

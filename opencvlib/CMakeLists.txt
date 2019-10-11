@@ -33,10 +33,13 @@ add_library( # Sets the name of the library.
              SHARED
 
              # Provides a relative path to your source file(s).
-             src/main/cpp/OpencvTest.cpp
+             src/main/cpp/square_area_finder.cpp
              src/main/cpp/BitmapUtil.cpp
-             src/main/cpp/ImageToGray.cpp
-             src/main/cpp/ImageCrop.cpp)
+             src/main/cpp/process_utils.cpp
+             src/main/cpp/process_helper.cpp
+             src/main/cpp/old_process.cpp
+             src/main/cpp/new_process.cpp
+        )
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
